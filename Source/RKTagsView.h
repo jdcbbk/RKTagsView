@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, RKTagsViewTextFieldAlign) { // align is relative to a
 
 @end
 
-@interface RKTagsView: UIView
+@interface RKTagsView: UIView<UITextFieldDelegate>
 
 @property (nonatomic, strong, readonly) UIScrollView *scrollView; // scrollView delegate is not used
 @property (nonatomic, strong, readonly) UITextField *textField; // textfield delegate is not used
@@ -43,6 +43,8 @@ typedef NS_ENUM(NSInteger, RKTagsViewTextFieldAlign) { // align is relative to a
 @property (nonatomic) BOOL selectBeforeRemoveOnDeleteBackward; // default is YES
 @property (nonatomic) BOOL deselectAllOnEdit; // default is YES
 @property (nonatomic) BOOL deselectAllOnEndEditing; // default is YES
+@property (nonatomic) BOOL filterEmpty; // default is YES
+@property (nonatomic) BOOL filterDuplication ; // default is YES
 
 @property (nonatomic) CGFloat lineSpacing; // default is 2
 @property (nonatomic) CGFloat interitemSpacing; // default is 2
@@ -56,8 +58,8 @@ typedef NS_ENUM(NSInteger, RKTagsViewTextFieldAlign) { // align is relative to a
 - (nullable __kindof UIButton *)buttonForTagAtIndex:(NSInteger)index;
 - (void)reloadButtons;
 
-- (void)addTag:(NSString *)tag;
-- (void)insertTag:(NSString *)tag atIndex:(NSInteger)index;
+- (BOOL)addTag:(NSString *)tag;
+- (BOOL)insertTag:(NSString *)tag atIndex:(NSInteger)index;
 - (void)moveTagAtIndex:(NSInteger)index toIndex:(NSInteger)newIndex; // can be animated
 - (void)removeTagAtIndex:(NSInteger)index;
 - (void)removeAllTags;
