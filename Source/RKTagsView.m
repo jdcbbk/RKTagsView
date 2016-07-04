@@ -85,7 +85,7 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 	//
 	self.becomeFirstResponderButton =
 	        [[UIButton alloc] initWithFrame:self.bounds];
-	self.becomeFirstResponderButton.backgroundColor = nil;
+	self.becomeFirstResponderButton.backgroundColor = [UIColor clearColor];
 	[self.becomeFirstResponderButton addTarget:self.inputTextField
 	 action:@selector(becomeFirstResponder)
 	 forControlEvents:UIControlEventTouchUpInside];
@@ -216,8 +216,10 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 	}
 	// set content size
 	CGSize oldContentSize = self.contentSize;
+    CGFloat contentHeight=CGRectGetMaxY(self.bounds)>CGRectGetMaxY(lowerFrame)?CGRectGetMaxY(self.bounds):CGRectGetMaxY(lowerFrame);
 	self.scrollView.contentSize =
-	        CGSizeMake(contentWidth, CGRectGetMaxY(lowerFrame));
+	        CGSizeMake(contentWidth, contentHeight);
+    
 	if (oldContentSize.height != self.contentSize.height) {
 		[self invalidateIntrinsicContentSize];
 		if ([self.delegate
@@ -431,6 +433,8 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 
 		return YES;
 	}
+    
+    return NO;
 }
 
 - (void)moveTagAtIndex:(NSInteger)index toIndex:(NSInteger)newIndex {
