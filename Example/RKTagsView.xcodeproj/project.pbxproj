@@ -172,6 +172,11 @@
 				CLASSPREFIX = RK;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Roman Kulesha";
+				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 79A8PKHM6K;
+					};
+				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "RKTagsView" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -343,11 +348,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8EE029BCE46DC738E302C05E /* Pods.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 79A8PKHM6K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RKTagsView/RKTagsView-Prefix.pch";
 				INFOPLIST_FILE = "RKTagsView/RKTagsView-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.tobin.RKTagsView-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -358,11 +364,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD7E0C54301F353271E61FB0 /* Pods.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 79A8PKHM6K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RKTagsView/RKTagsView-Prefix.pch";
 				INFOPLIST_FILE = "RKTagsView/RKTagsView-Info.plist";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.tobin.RKTagsView-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

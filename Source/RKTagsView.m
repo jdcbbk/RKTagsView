@@ -1,10 +1,10 @@
 #import "RKTagsView.h"
 
 #define DEFAULT_BUTTON_TAG -9999
-#define DEFAULT_BUTTON_HORIZONTAL_PADDING 6
-#define DEFAULT_BUTTON_VERTICAL_PADDING 4
-#define DEFAULT_BUTTON_CORNER_RADIUS 6
-#define DEFAULT_BUTTON_BORDER_WIDTH 0.5
+//#define DEFAULT_BUTTON_HORIZONTAL_PADDING 6
+//#define DEFAULT_BUTTON_VERTICAL_PADDING 4
+//#define DEFAULT_BUTTON_CORNER_RADIUS 6
+//#define DEFAULT_BUTTON_BORDER_WIDTH 0.5
 
 const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 
@@ -19,6 +19,11 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 @property(nonatomic, strong) __RKInputTextField *inputTextField;
 @property(nonatomic, strong) UIButton *becomeFirstResponderButton;
 @property(nonatomic) BOOL needScrollToBottomAfterLayout;
+
+@property(nonatomic) UIEdgeInsets buttonEdgeInsets;
+@property(nonatomic) BOOL buttonCornerRadius;
+@property(nonatomic) BOOL buttonBorderWith;
+
 - (BOOL)shouldInputTextDeleteBackward;
 @end
 
@@ -55,6 +60,10 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 }
 
 - (void)commonSetup {
+    self.buttonEdgeInsets=UIEdgeInsetsMake(4, 6, 4, 6);
+    self.buttonCornerRadius=6;
+    self.buttonBorderWith=0.5;
+    
     self.filterEmpty=YES;
     self.filterDuplication=YES;
     
@@ -103,12 +112,6 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 	_textFieldHeight = RKTagsViewAutomaticDimension;
 	_textFieldAlign = RKTagsViewTextFieldAlignCenter;
 	_deliminater = [NSCharacterSet newlineCharacterSet];
-
-	[[NSNotificationCenter defaultCenter]
-	 addObserver:self
-	 selector:@selector(didTextChangeText:)
-	 name:UITextViewTextDidChangeNotification
-	 object:nil];
 }
 
 #pragma mark Layout
@@ -407,8 +410,8 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 			tagButton = [self.delegate tagsView:self buttonForTagAtIndex:index];
 		} else {
 			tagButton = [UIButton new];
-			tagButton.layer.cornerRadius = DEFAULT_BUTTON_CORNER_RADIUS;
-			tagButton.layer.borderWidth = DEFAULT_BUTTON_BORDER_WIDTH;
+            tagButton.layer.cornerRadius = self.buttonCornerRadius;;
+			tagButton.layer.borderWidth = self.buttonBorderWith;
 			tagButton.layer.borderColor = self.tintColor.CGColor;
 			tagButton.titleLabel.font = self.font;
 			tagButton.tintColor = self.tintColor;
@@ -417,9 +420,9 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 			[tagButton setTitleColor:self.tintColor forState:UIControlStateNormal];
 			[tagButton setTitleColor:[UIColor whiteColor]
 			 forState:UIControlStateSelected];
-			tagButton.contentEdgeInsets = UIEdgeInsetsMake(
-			        DEFAULT_BUTTON_VERTICAL_PADDING, DEFAULT_BUTTON_HORIZONTAL_PADDING,
-			        DEFAULT_BUTTON_VERTICAL_PADDING, DEFAULT_BUTTON_HORIZONTAL_PADDING);
+            tagButton.contentEdgeInsets = self.buttonEdgeInsets;
+            tagButton.backgroundColor=[UIColor redColor];
+            
 			tagButton.tag = DEFAULT_BUTTON_TAG;
 		}
 		[tagButton sizeToFit];
